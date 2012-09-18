@@ -124,10 +124,10 @@ public class CreeperListener implements Listener{
 				}
 				else if(cause == DamageCause.MAGIC)
 				{
-					Projectile projectile = (Projectile) ((EntityDamageByEntityEvent) event).getDamager();
-					if(projectile instanceof ThrownPotion)
+				    Entity damager = ((EntityDamageByEntityEvent) event).getDamager();
+					if(damager instanceof ThrownPotion)
 					{
-						Entity attacker = projectile.getShooter();
+						Entity attacker = ((ThrownPotion) damager).getShooter();
 						if(attacker instanceof Player)
 						{
 							offender = (Player) attacker;
