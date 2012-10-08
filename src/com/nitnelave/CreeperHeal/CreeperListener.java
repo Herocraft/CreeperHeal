@@ -102,7 +102,7 @@ public class CreeperListener implements Listener{
 				String message = "";
 				WorldConfig world = getWorld(event.getEntity().getWorld());
 				DamageCause cause = event.getCause();
-				if(cause == DamageCause.ENTITY_ATTACK)
+				if(event instanceof EntityDamageByEntityEvent && cause == DamageCause.ENTITY_ATTACK)
 				{
 					Entity attacker = ((EntityDamageByEntityEvent)event).getDamager();
 					if(attacker instanceof Player)
@@ -112,7 +112,7 @@ public class CreeperListener implements Listener{
 						
 					}
 				}
-				else if(cause == DamageCause.PROJECTILE)
+				else if(event instanceof EntityDamageByEntityEvent && cause == DamageCause.PROJECTILE)
 				{
 					Projectile projectile = (Projectile) ((EntityDamageByEntityEvent) event).getDamager();
 					Entity attacker = projectile.getShooter();
@@ -122,7 +122,7 @@ public class CreeperListener implements Listener{
 						message = projectile.getType().toString();
 					}
 				}
-				else if(cause == DamageCause.MAGIC)
+				else if(event instanceof EntityDamageByEntityEvent && cause == DamageCause.MAGIC)
 				{
 				    Entity damager = ((EntityDamageByEntityEvent) event).getDamager();
 					if(damager instanceof ThrownPotion)
